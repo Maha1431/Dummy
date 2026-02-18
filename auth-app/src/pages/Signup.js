@@ -15,7 +15,7 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    joinAsSeller: true,
+    joinAsSeller: false, // default false
   });
 
   const handleSubmit = (e) => {
@@ -31,42 +31,69 @@ const Signup = () => {
         {success && <div className="success-message">Signup Successful!</div>}
         {error && <div className="error-message">{error}</div>}
 
-        <input placeholder="First Name"
+        <input
+          placeholder="First Name"
           onChange={(e) =>
             setFormData({ ...formData, firstName: e.target.value })
           }
           required
         />
-        <input placeholder="Last Name"
+
+        <input
+          placeholder="Last Name"
           onChange={(e) =>
             setFormData({ ...formData, lastName: e.target.value })
           }
           required
         />
-        <input placeholder="Username"
+
+        <input
+          placeholder="Username"
           onChange={(e) =>
             setFormData({ ...formData, username: e.target.value })
           }
           required
         />
-        <input type="email" placeholder="Email"
+
+        <input
+          type="email"
+          placeholder="Email"
           onChange={(e) =>
             setFormData({ ...formData, email: e.target.value })
           }
           required
         />
-        <input type="password" placeholder="Password"
+
+        <input
+          type="password"
+          placeholder="Password"
           onChange={(e) =>
             setFormData({ ...formData, password: e.target.value })
           }
           required
         />
-        <input type="password" placeholder="Confirm Password"
+
+        <input
+          type="password"
+          placeholder="Confirm Password"
           onChange={(e) =>
             setFormData({ ...formData, confirmPassword: e.target.value })
           }
           required
         />
+
+        {/* ✅ Join As Seller Checkbox */}
+        <div className="checkbox-container">
+          <input
+            type="checkbox"
+            id="seller"
+            checked={formData.joinAsSeller}
+            onChange={(e) =>
+              setFormData({ ...formData, joinAsSeller: e.target.checked })
+            }
+          />
+          <label htmlFor="seller">Join as Seller</label>
+        </div>
 
         <button type="submit">
           {loading ? "Signing up..." : "Signup"}
